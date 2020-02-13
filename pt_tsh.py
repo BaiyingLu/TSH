@@ -1,5 +1,10 @@
 
 
+def input_data(filename):
+    lines = open(filename).read().splitlines()
+    return lines
+
+
 def interface():
     print("Please input the document name:")
     print("Please include the extension,like: .txt")
