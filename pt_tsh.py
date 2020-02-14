@@ -15,6 +15,13 @@ def Diagnosis(tsh_min, tsh_max):
     return diagnosis
 
 
+def output_file(patient_dict):
+    filename = patient_dict["First Name"]+' '+patient_dict["Last Name"]+'.json'
+    out_file = open(filename, "w")
+    json.dump(patient_dict, out_file)
+    out_file.close()
+
+
 def interface():
     print("Please input the document name:")
     print("Please include the extension,like: .txt")
