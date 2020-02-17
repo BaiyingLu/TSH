@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pt_tsh module &#8212; TSH_Test_Data_Conversion 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test_pt_tsh module" href="test_pt_tsh.html" />
+    <link rel="prev" title="Welcome to TSH_Test_Data_Conversion’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pt_tsh">
+<span id="pt-tsh-module"></span><h1>pt_tsh module<a class="headerlink" href="#module-pt_tsh" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pt_tsh.Diagnosis">
+<code class="sig-prename descclassname">pt_tsh.</code><code class="sig-name descname">Diagnosis</code><span class="sig-paren">(</span><em class="sig-param">tsh_min</em>, <em class="sig-param">tsh_max</em><span class="sig-paren">)</span><a class="headerlink" href="#pt_tsh.Diagnosis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diagnose based on the TSH result</p>
+<p>Thyroid Stimulating Hormone (TSH) shows the level of the thyroid gland to
+produce thyroxine. In diagnosis, “hyperthyroidism” is defined by any of
+the patient test results being less than 1.0. The “hypothyroidism” is
+defined by any of the patient test results being greater than 4.0.
+And the “normal thyroid function” is defined by all of their test results
+being between 1.0 and 4.0, inclusive. No single patient will have test
+results both above 4.0 and below 1.0, hence will only meet one of the
+diagnoses above. The function only takes in the minimun and the maximum
+from the patient TSH test result list. If the minimum is less than 1.0,
+this patient is hyperthyroidism. If the maximum is mroe than 4.0,
+this patient is hypothyroidism. If the minimum and the maximum are both
+between 1.0 to 4.0, this patient is normal thyroid function.
+The result will be returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tsh_min</strong> (<em>float</em>) – minimum in TSH test result list</p></li>
+<li><p><strong>tsh_max</strong> (<em>float</em>) – maximum in TSH test result list</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the diagnosis result</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pt_tsh.input_data">
+<code class="sig-prename descclassname">pt_tsh.</code><code class="sig-name descname">input_data</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pt_tsh.input_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the Data from a File</p>
+<p>This function reads in the data from a file. The file type could
+be .txt. Each data is seperated by new line (carriage return).
+Then this function transfers the data into a list with each element in it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – The name of the file which saves the patient info</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list with all of the elements in the file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pt_tsh.interface">
+<code class="sig-prename descclassname">pt_tsh.</code><code class="sig-name descname">interface</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pt_tsh.interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take in the data file name</p>
+<p>This function is an interface which can interact with the user. This
+function takes in the file which user types in with extension.
+Then it calls the function import_data and tsh_info_process</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pt_tsh.output_file">
+<code class="sig-prename descclassname">pt_tsh.</code><code class="sig-name descname">output_file</code><span class="sig-paren">(</span><em class="sig-param">patient_dict</em><span class="sig-paren">)</span><a class="headerlink" href="#pt_tsh.output_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output the patient information in dictionary into .json file</p>
+<p>This function takes in the one patient information dictionary and create a
+.json file named by the patient first and last name in this way:
+“Firstname Lastname.json”. Then close the created file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>patient_dict</strong> (<em>dictionary</em>) – stores patient information</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pt_tsh.tsh_info_process">
+<code class="sig-prename descclassname">pt_tsh.</code><code class="sig-name descname">tsh_info_process</code><span class="sig-paren">(</span><em class="sig-param">lines</em><span class="sig-paren">)</span><a class="headerlink" href="#pt_tsh.tsh_info_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the information from a raw list into formed dictionary</p>
+<p>This function takes in a list with patient information in order and
+transfer it into dictionaries.Each four elements in the list will be
+treated as one patient information. The first element in these four is
+the patient’s name. This function splits this element into First Name
+and Last Name and gives these two string to the keys named “First Name”
+and “Last Name” seperately. The second is the patient’s age, which will
+be transfered from string to int and stored with the key “Age”.
+The third is the patient’s gender, which will be saved with the key
+“Gender”. The fourth is the patient’s TSH test result.
+This function will get rid of the first string in this list and give
+out the diagnosis information based on this list, and then sorts it
+from low to high and saves it with the key “TSH”. The diagnosis result
+will be stored with the key “Diagnosis”. Then the function will call
+the output_file function to output the patient information dictionary
+into .json file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lines</strong> (<em>list</em>) – all patients’ information</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">TSH_Test_Data_Conversion</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pt_tsh module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_pt_tsh.html">test_pt_tsh module</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">TSH</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pt_tsh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_pt_tsh.html">test_pt_tsh module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to TSH_Test_Data_Conversion’s documentation!</a></li>
+      <li>Next: <a href="test_pt_tsh.html" title="next chapter">test_pt_tsh module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Baiying Lu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/pt_tsh.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
