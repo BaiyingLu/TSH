@@ -92,9 +92,10 @@ def tsh_info_process(lines):
         lines (list): all patients' information
 
     """
+    all_patient = []
     for i in range(0, len(lines) - 1, 4):
         while lines[i] != 'END':
-            tsh_num = lines[i + 3].split(",")[1:-1]
+            tsh_num = lines[i + 3].split(",")[1:]
             tsh_num = [float(i) for i in tsh_num]
             tsh_min = min(tsh_num)
             tsh_max = max(tsh_num)
@@ -107,8 +108,9 @@ def tsh_info_process(lines):
                             "Diagnosis": diagnosis,
                             "TSH": tsh_num}
             output_file(patient_dict)
-            print(patient_dict)
             break
+        all_patient.append(patient_dict)
+    return all_patient
 
 
 def interface():
